@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateForeignKey extends Migration
+class CreateDirectorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class CreateForeignKey extends Migration
      */
     public function up()
     {
-        Schema::enableForeignKeyConstraints();
+        Schema::table('directors', function (Blueprint $table) {
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,8 +25,6 @@ class CreateForeignKey extends Migration
      */
     public function down()
     {
-        Schema::table('movies', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('directors');
     }
 }
